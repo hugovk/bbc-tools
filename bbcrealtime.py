@@ -51,7 +51,7 @@ def bbcrealtime(station):
 def nowplaying(station):
     """Return bbcrealtime() or None if nothing playing now"""
     realtime = bbcrealtime(station)
-    if realtime['start'] <= time.time() <= realtime['end']:
+    if realtime and realtime['start'] <= time.time() <= realtime['end']:
         return realtime
     else:
         return None
