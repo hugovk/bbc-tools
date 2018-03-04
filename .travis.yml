@@ -14,7 +14,10 @@ install:
  - pip install pycodestyle pyflakes
 
 script:
- # Pretend tests
+ # Tests
+ - python test_bbcrealtime.py
+
+ # Static analysis
  - pyflakes .
  - pycodestyle --statistics --count .
 
