@@ -3,22 +3,24 @@ language: python
 python:
  - pypy
  - pypy3
- - 2.6
  - 2.7
- - 3.2
- - 3.3
  - 3.4
  - 3.5
+ - 3.6
 
 sudo: false
 
 install:
- - pip install pep8 pyflakes
+ - pip install pycodestyle pyflakes
+ - pip install -r requirements.txt
 
 script:
- # Pretend tests
+ # Tests
+ - python test_bbcrealtime.py
+
+ # Static analysis
  - pyflakes .
- - pep8 --statistics --count .
+ - pycodestyle --statistics --count .
 
 matrix:
   fast_finish: true

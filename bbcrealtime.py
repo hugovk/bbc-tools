@@ -41,7 +41,7 @@ def bbcrealtime(station):
     url = "https://polling.bbc.co.uk/radio/realtime/{0}.jsonp".format(station)
     try:
         r = requests.get(url)
-        response = _jsonp_to_json(r.content)
+        response = _jsonp_to_json(r.text)
         realtime = json.loads(response)['realtime']
     except requests.exceptions.ConnectionError:
         return None
