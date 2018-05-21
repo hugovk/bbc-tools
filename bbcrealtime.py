@@ -5,10 +5,12 @@ What's playing on BBC music radio?
 A Python interface for BBC realtime JSONP.
 """
 from __future__ import print_function, unicode_literals
-from pprint import pprint
+
 import json
-import requests
 import time
+from pprint import pprint
+
+import requests
 
 
 def _station_name(name):
