@@ -50,7 +50,7 @@ def _jsonp_to_json(jsonp):
 def bbcrealtime(station):
     """Return JSON data or None if connection error"""
     station = _station_name(station)
-    url = "https://polling.bbc.co.uk/radio/realtime/{0}.jsonp".format(station)
+    url = f"https://polling.bbc.co.uk/radio/realtime/{station}.jsonp"
     try:
         r = requests.get(url)
         response = _jsonp_to_json(r.text)
