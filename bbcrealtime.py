@@ -8,9 +8,13 @@ from __future__ import print_function, unicode_literals
 
 import json
 import time
+from datetime import datetime
 from pprint import pprint
 
 import requests
+
+
+TIMESTAMP_FORMAT = "%Y-%m-%d %H:%M:%S"
 
 
 def _station_name(name):
@@ -59,21 +63,32 @@ def bbcrealtime(station):
 def nowplaying(station):
     """Return bbcrealtime() or None if nothing playing now"""
     realtime = bbcrealtime(station)
-    if realtime and realtime['start'] <= time.time() <= realtime['end']:
+    if realtime and realtime["start"] <= time.time() <= realtime["end"]:
         return realtime
     else:
         return None
+
+
+def unix_to_utc(unix):
+    """Convert Unix time to UTC timestamp"""
+    return datetime.utcfromtimestamp(unix).strftime(TIMESTAMP_FORMAT)
 
 
 def output(realtime):
     """Simple way of printing"""
     pprint(realtime)
     if realtime:
-        print("Artist:\t", realtime['artist'])
-        print("Title:\t", realtime['title'])
-        print("Start:\t", realtime['start'])
-        print("Now:\t", time.time())
-        print("End:\t", realtime['end'])
+        print("Artist:\t", realtime["artist"])
+        print("Title:\t", realtime["title"])
+        print("Start:\t", unix_to_utc(realtime["start"]))
+        now = time.time()
+        end = realtime["end"]
+        if now <= end:
+            print("Now:\t", unix_to_utc(now))
+            print("End:\t", unix_to_utc(end))
+        else:
+            print("End:\t", unix_to_utc(end))
+            print("Now:\t", unix_to_utc(now))
 
 
 if __name__ == "__main__":
