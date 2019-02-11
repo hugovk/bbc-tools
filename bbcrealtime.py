@@ -15,7 +15,7 @@ import requests
 
 def _station_name(name):
     """Utility to convert station argument for the request URL"""
-    if name == "bbcradio1":
+    if name in ["bbcradio1", "bbcmedia_radio1_mf_p"]:
         return "bbc_radio_one"
     elif name == "bbc1xtra":
         return "bbc_1xtra"
@@ -23,6 +23,12 @@ def _station_name(name):
         return "bbc_radio_two"
     elif name == "bbcradio3":
         return "bbc_radio_three"
+    elif name == "bbc_radio_fourfm":
+        return "bbc_radio_four"
+    elif name == "bbcmedia_radio4extra_mf_p":
+        return "bbc_radio_four_extra"
+    elif name == "bbcmedia_radio5live_mf_p":
+        return "bbc_radio_five_live"
     elif name == "bbc6music":
         return "bbc_6music"
 
