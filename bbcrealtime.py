@@ -42,7 +42,7 @@ def _jsonp_to_json(jsonp):
     output = jsonp
     prefix = "realtimeCallback("
     if output.startswith(prefix):
-        output = output[len(prefix):]
+        output = output[len(prefix) :]
         output = output[:-1]  # Remove trailing ")"
     return output
 
@@ -54,7 +54,7 @@ def bbcrealtime(station):
     try:
         r = requests.get(url)
         response = _jsonp_to_json(r.text)
-        realtime = json.loads(response)['realtime']
+        realtime = json.loads(response)["realtime"]
     except requests.exceptions.ConnectionError:
         return None
     return realtime
@@ -96,16 +96,16 @@ if __name__ == "__main__":
 
     parser = argparse.ArgumentParser(
         description="What's playing on BBC music radio? "
-                    "A Python interface for BBC realtime JSONP.",
-        formatter_class=argparse.ArgumentDefaultsHelpFormatter)
+        "A Python interface for BBC realtime JSONP.",
+        formatter_class=argparse.ArgumentDefaultsHelpFormatter,
+    )
     parser.add_argument(
-        "station",  nargs="?", default="bbc6music",
-        choices=("bbcradio1",
-                 "bbc1xtra",
-                 "bbcradio2",
-                 "bbcradio3",
-                 "bbc6music"),
-        help="BBC radio station to check")
+        "station",
+        nargs="?",
+        default="bbc6music",
+        choices=("bbcradio1", "bbc1xtra", "bbcradio2", "bbcradio3", "bbc6music"),
+        help="BBC radio station to check",
+    )
     args = parser.parse_args()
 
     brt = bbcrealtime(args.station)

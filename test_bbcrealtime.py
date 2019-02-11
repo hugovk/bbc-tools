@@ -7,7 +7,6 @@ import bbcrealtime
 
 
 class TestBbcRealtime(unittest.TestCase):
-
     def test_something(self):
         # Arrange
         stations = ["bbc6music", "bbcradio1", "bbcradio2", "bbc1xtra"]
@@ -30,7 +29,7 @@ class TestBbcRealtime(unittest.TestCase):
         self.assertGreater(realtime["end"], realtime["start"])
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()
 
 # End of  file
