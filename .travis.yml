@@ -1,26 +1,22 @@
 language: python
+cache: pip
 
-python:
- - pypy
- - pypy3
- - 2.7
- - 3.4
- - 3.5
- - 3.6
-
-sudo: false
+matrix:
+  fast_finish: true
+  include:
+    - python: 3.7
+      dist: xenial
+    - python: 3.6
 
 install:
- - pip install pycodestyle pyflakes
- - pip install -r requirements.txt
+ - pip install --upgrade pip
+ - pip install --upgrade black flake8
+ - pip install --upgrade -r requirements.txt
 
 script:
  # Tests
  - python test_bbcrealtime.py
 
  # Static analysis
- - pyflakes .
- - pycodestyle --statistics --count .
-
-matrix:
-  fast_finish: true
+ - flake8
+ - black --check --diff .

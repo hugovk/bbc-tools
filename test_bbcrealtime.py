@@ -25,7 +25,7 @@ class TestBbcRealtime(unittest.TestCase):
         self.assertIsNotNone(realtime)
         self.assertIn("start", realtime)
         self.assertIn("end", realtime)
-        self.assertGreater(realtime["end"], 1520157840)
+        self.assertGreater(realtime["end"], 1_520_157_840)
         self.assertGreater(realtime["end"], realtime["start"])
 
 
