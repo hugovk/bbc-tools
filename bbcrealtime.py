@@ -1,11 +1,9 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # encoding: utf-8
 """
 What's playing on BBC music radio?
 A Python interface for BBC realtime JSONP.
 """
-from __future__ import print_function, unicode_literals
-
 import json
 import time
 from datetime import datetime
