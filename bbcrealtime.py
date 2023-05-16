@@ -6,7 +6,7 @@ A Python interface for BBC realtime JSONP.
 """
 import json
 import time
-from datetime import datetime
+import datetime as dt
 from pprint import pprint
 
 import requests
@@ -69,7 +69,7 @@ def nowplaying(station):
 
 def unix_to_utc(unix):
     """Convert Unix time to UTC timestamp"""
-    return datetime.utcfromtimestamp(unix).strftime(TIMESTAMP_FORMAT)
+    return dt.datetime.fromtimestamp(unix, dt.timezone.utc).strftime(TIMESTAMP_FORMAT)
 
 
 def output(realtime):
